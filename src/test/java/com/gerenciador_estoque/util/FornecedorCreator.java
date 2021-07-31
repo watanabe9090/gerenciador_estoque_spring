@@ -10,7 +10,6 @@ public class FornecedorCreator {
 
     public static Fornecedor createFornecedor() {
         return Fornecedor.builder()
-                .id(0L)
                 .cnpj("96531451000124")
                 .nomeFantasia("Adilene Imoveis")
                 .razaoSocial("Adilene da Silva")
