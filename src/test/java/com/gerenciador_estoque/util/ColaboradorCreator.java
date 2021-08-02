@@ -15,10 +15,8 @@ public class ColaboradorCreator {
                 .sexo("m")
                 .cpf("57404912075")
                 .dataNascimento(LocalDate.of(2000, 10, 10))
-                .contato(Contato.builder()
-                        .build())
-                .endereco(Endereco.builder()
-                        .build())
+                .contato(ContatoCreator.createContato())
+                .endereco(EnderecoCreator.createEndereco())
                 .statusCode(1)
                 .dataCadastro(LocalDateTime.now())
                 .build();
