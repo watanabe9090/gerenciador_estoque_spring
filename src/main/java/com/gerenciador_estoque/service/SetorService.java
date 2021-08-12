@@ -2,6 +2,7 @@ package com.gerenciador_estoque.service;
 
 import com.gerenciador_estoque.dto.setor.SetorPostRequestBody;
 import com.gerenciador_estoque.dto.setor.SetorPutRequestBody;
+import com.gerenciador_estoque.exception.BadRequestException;
 import com.gerenciador_estoque.model.Cliente;
 import com.gerenciador_estoque.model.Local;
 import com.gerenciador_estoque.model.Setor;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SetorService {
     private final SetorRepository setorRepository;
-    private final LocalRepository localRepository;
+    private final LocalService localService;
 
     private Page<Setor> filter(Page<Setor> setores) {
         List<Setor> setorList = setores
@@ -39,25 +40,24 @@ public class SetorService {
                 .collect(Collectors.toList());
     }
 
-
     public Page<Setor> listAll(Pageable pageable) {
         return filter(setorRepository.findAll(pageable));
     }
 
     public Setor findById(Long id) {
-        Setor setor = setorRepository.findById(id).get();
+        Setor setor = setorRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException("Setor não encontrado"));
         return setor;
     }
 
     public List<Setor> findByLocalId(Long id) {
-        Local local = localRepository.findById(id).get();
+        Local local = localService.findById(id);
         List<Setor> setores = setorRepository.findByLocal(local);
         return filter(setores);
     }
 
     public Setor save(SetorPostRequestBody setorPostRequestBody) {
-        System.out.println(setorPostRequestBody.toString());
-        Local local = localRepository.findById(setorPostRequestBody.getLocalId()).get();
+        Local local = localService.findById(setorPostRequestBody.getLocalId());
         Setor setor = Setor.builder()
                 .nome(setorPostRequestBody.getNome())
                 .local(local)
