@@ -77,6 +77,7 @@ public class ItemEstocadoService {
                 .codigo(itemEstocadoPostRequestBody.getCodigo())
                 .precoCompra(itemEstocadoPostRequestBody.getPrecoCompra())
                 .precoVenda(itemEstocadoPostRequestBody.getPrecoVenda())
+                .quantidade(itemEstocadoPostRequestBody.getQuantidade())
                 .dataCadastro(LocalDateTime.now())
                 .statusCode(1)
                 .build();

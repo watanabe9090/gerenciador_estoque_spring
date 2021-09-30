@@ -9,35 +9,16 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class ItemEstocado {
+public class Venda {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String codigo;
-    private double precoCompra;
-    private double precoVenda;
-    private Integer quantidade;
-
-    @OneToOne
-    @JoinColumn(name = "lote_id")
-    private Lote lote;
-
-    @ManyToOne
-    @JoinColumn(name = "setor_id")
-    private Setor setor;
-
-    @ManyToOne
-    @JoinColumn(name = "mercadoria_id")
-    private Mercadoria mercadoria;
-
-    @ManyToOne
-    @JoinColumn(name = "marca_id")
-    private Marca marca;
-
-    @Value(value = "{1}")
-    private int statusCode;
+    private Double valor;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<ItemVendido> itensVendidos;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dataCadastro;
 }

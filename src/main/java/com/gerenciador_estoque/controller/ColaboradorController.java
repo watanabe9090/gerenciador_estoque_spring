@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("colaboradores")
 @RequiredArgsConstructor
@@ -41,6 +40,7 @@ public class ColaboradorController {
         colaboradorService.update(colaboradorPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         colaboradorService.delete(id);

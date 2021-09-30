@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("clientes")
@@ -37,7 +37,6 @@ public class ClienteController {
             @RequestParam(required = false, defaultValue = "") String nome,
             @RequestParam(required = false, defaultValue = "") String sobrenome,
             @RequestParam(required = false, defaultValue = "") String cpf,
-            @RequestParam(required = false, defaultValue = "") String sexo,
             Pageable pageable) {
         if(!nome.isEmpty()) {
             return new ResponseEntity<>(clienteService.findByNome(nome), HttpStatus.OK);
@@ -52,6 +51,7 @@ public class ClienteController {
     }
 
     @PostMapping
+//    @PreAuthorize("hasRole('VENDEDOR')")
     public ResponseEntity<Cliente> save(@RequestBody @Valid ClientePostRequestBody clientePostRequestBody) {
         return new ResponseEntity(clienteService.save(clientePostRequestBody), HttpStatus.OK);
     }

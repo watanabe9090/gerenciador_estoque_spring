@@ -34,6 +34,7 @@ public class ClienteService {
                 .filter(cliente -> cliente.getStatusCode() == 1)
                 .collect(Collectors.toList());
     }
+
     public Page<Cliente> listAll(Pageable pageable) {
         Page<Cliente> clientePage = clienteRepository.findAll(pageable);
         return new PageImpl<>(filter(clientePage), pageable , pageable.getPageSize());

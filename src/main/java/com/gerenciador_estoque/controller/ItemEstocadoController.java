@@ -1,6 +1,7 @@
 package com.gerenciador_estoque.controller;
 
 
+import com.gerenciador_estoque.dto.itemEstocado.ItemEstocadoForVenda;
 import com.gerenciador_estoque.dto.itemEstocado.ItemEstocadoGetSingleRequestBody;
 import com.gerenciador_estoque.dto.itemEstocado.ItemEstocadoPostRequestBody;
 import com.gerenciador_estoque.model.Cliente;
@@ -17,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin("http://localhost:3000")
 @RequestMapping(path = "itens_estocados")
 @RestController
@@ -27,6 +30,11 @@ public class ItemEstocadoController {
     public ResponseEntity<Page<ItemEstocado>> listAll(Pageable pageable) {
         return new ResponseEntity<>(itemEstocadoService.listAll(pageable), HttpStatus.OK);
     }
+
+//    @GetMapping("/list")
+//    public ResponseEntity<List<ItemEstocadoForVenda>> listAllForVenda() {
+//
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ItemEstocadoGetSingleRequestBody> findById(@PathVariable Long id) {

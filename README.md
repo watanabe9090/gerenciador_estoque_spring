@@ -2,24 +2,25 @@
 <p1 align="center">
 Repositório dedicado ao Backend em <b>desenvolvimento</b> da aplicação
 <a href="https://github.com/watanabe9090/gerenciador_estoque_react"> 
-gerenciado_estoque_react
+gerenciador_estoque_react
 </a>
-onde é feito um software que abrange as funcionalidades básicas de um gerenciador de estoque
+onde é desenvolvido um software que abrange as funcionalidades básicas de um gerenciador de estoque
 </p1>
 
 ### Conteúdos
 
-* Introdução e Estado do projeto
-* Features
+* Introdução e Estado de desenvolvimento do projeto
+* Features 
+* Arquitetura 
 * Instalação
 * Tecnologias utilizadas
 
 ### Introdução e Estado do projeto
 
-O Sistema ainda não possui uma primeira versão pois 
+O Sistema ainda não possui uma primeira versão, pois 
 está em desenvolvimento, com algumas funcionalidades 
 incompletas e outras ainda não desenvolvidas.
-O projeto tem como objetivo um sistema básico para gerenciar o
+O projeto visa um sistema básico para gerir o
 estoque de uma pequena loja.
 
 ### Features
@@ -61,6 +62,7 @@ estoque de uma pequena loja.
     <li>Framework Spring e Spring boot</li>
     <li>Banco de dados H2</li>
     <li>Lombok</li>
+    <li>JUnit4</li>
 </ul>
 
 

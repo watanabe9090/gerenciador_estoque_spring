@@ -3,6 +3,7 @@ package com.gerenciador_estoque.service;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gerenciador_estoque.dto.marca.MarcaPostRequestBody;
 import com.gerenciador_estoque.dto.marca.MarcaPutRequestBody;
+import com.gerenciador_estoque.exception.BadRequestException;
 import com.gerenciador_estoque.model.Fornecedor;
 import com.gerenciador_estoque.model.Marca;
 import com.gerenciador_estoque.repository.FornecedorRepository;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MarcaService {
     private final MarcaRepository marcaRepository;
-    private final FornecedorRepository fornecedorRepository;
+    private final FornecedorService fornecedorService;
 
     private Page<Marca> filter(Page<Marca> marcas) {
         List<Marca> marcaList = marcas
@@ -45,18 +46,19 @@ public class MarcaService {
     }
 
     public Marca findById(Long id) {
-        Marca marca = marcaRepository.findById(id).get();
+        Marca marca = marcaRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException("Marca não encontrada"));
         return marca;
     }
 
     public List<Marca> findByFornecedor(Long fornecedorId) {
-        Fornecedor fornecedor = fornecedorRepository.findById(fornecedorId).get();
+        Fornecedor fornecedor = fornecedorService.findById(fornecedorId);
         List<Marca> marcas = marcaRepository.findByFornecedor(fornecedor);
         return filter(marcas);
     }
 
     public Marca save(MarcaPostRequestBody marcaPostRequestBody) {
-        Fornecedor fornecedor = fornecedorRepository.findById(marcaPostRequestBody.getFornecedorId()).get();
+        Fornecedor fornecedor = fornecedorService.findById(marcaPostRequestBody.getFornecedorId());
         Marca marca = Marca.builder()
                 .nome(marcaPostRequestBody.getNome())
                 .fornecedor(fornecedor)

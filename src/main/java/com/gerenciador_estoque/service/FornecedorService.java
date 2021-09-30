@@ -27,7 +27,7 @@ public class FornecedorService {
     }
 
     public Page<Fornecedor> listAll(Pageable pageable) {
-        return fornecedorRepository.findAll(pageable);
+        return new PageImpl<>(filter(fornecedorRepository.findAll()));
     }
 
     public Fornecedor findById(Long id) {
@@ -68,14 +68,12 @@ public class FornecedorService {
     }
 
     public void update(FornecedorPutRequestBody fornecedorPutRequestBody) {
-        Fornecedor fornecedor = Fornecedor.builder()
-                .id(fornecedorPutRequestBody.getId())
-                .cnpj(fornecedorPutRequestBody.getCnpj())
-                .nomeFantasia(fornecedorPutRequestBody.getNomeFantasia())
-                .razaoSocial(fornecedorPutRequestBody.getRazaoSocial())
-                .endereco(fornecedorPutRequestBody.getEndereco())
-                .contato(fornecedorPutRequestBody.getContato())
-                .build();
+        Fornecedor fornecedor = findById(fornecedorPutRequestBody.getId());
+        fornecedor.setRazaoSocial(fornecedorPutRequestBody.getRazaoSocial());
+        fornecedor.setNomeFantasia(fornecedorPutRequestBody.getNomeFantasia());
+        fornecedor.setCnpj(fornecedorPutRequestBody.getCnpj());
+        fornecedor.setContato(fornecedorPutRequestBody.getContato());
+        fornecedor.setEndereco(fornecedorPutRequestBody.getEndereco());
         fornecedorRepository.save(fornecedor);
     }
 
