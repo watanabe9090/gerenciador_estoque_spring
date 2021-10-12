@@ -1,6 +1,7 @@
 package com.gerenciador_estoque.service;
 
 import com.gerenciador_estoque.dto.itemEstocado.ItemEstocadoGetSingleRequestBody;
+import com.gerenciador_estoque.dto.itemEstocado.ItemEstocadoList;
 import com.gerenciador_estoque.dto.itemEstocado.ItemEstocadoPostRequestBody;
 import com.gerenciador_estoque.exception.BadRequestException;
 import com.gerenciador_estoque.model.*;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +28,19 @@ public class ItemEstocadoService {
         return itemEstocadoRepository.findAll(pageable);
     }
 
+    public List<ItemEstocadoList> listAll() {
+        List<ItemEstocadoList> itemEstocadoLists = new ArrayList<>();
+        for(ItemEstocado i : itemEstocadoRepository.findAll()) {
+            itemEstocadoLists.add(ItemEstocadoList.builder()
+                    .codigo(i.getCodigo())
+                    .nome(i.getMercadoria().getNome())
+                    .precoVenda(i.getPrecoVenda())
+                    .quantidade(i.getQuantidade())
+                    .build()
+            );
+        }
+        return itemEstocadoLists;
+    }
     private ItemEstocado findyId(Long id) {
         ItemEstocado itemEstocado = itemEstocadoRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException("Item Estocado não encontrado"));
