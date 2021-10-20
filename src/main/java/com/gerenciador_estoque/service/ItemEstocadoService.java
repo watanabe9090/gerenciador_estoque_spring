@@ -32,6 +32,7 @@ public class ItemEstocadoService {
         List<ItemEstocadoList> itemEstocadoLists = new ArrayList<>();
         for(ItemEstocado i : itemEstocadoRepository.findAll()) {
             itemEstocadoLists.add(ItemEstocadoList.builder()
+                    .id(i.getId())
                     .codigo(i.getCodigo())
                     .nome(i.getMercadoria().getNome())
                     .precoVenda(i.getPrecoVenda())
@@ -70,6 +71,7 @@ public class ItemEstocadoService {
     public ItemEstocado save(ItemEstocadoPostRequestBody itemEstocadoPostRequestBody) {
         Setor setor = setorRepository.findById(itemEstocadoPostRequestBody.getSetorId()).get();
         Marca marca = marcaRepository.findById(itemEstocadoPostRequestBody.getMarcaId()).get();
+
         Mercadoria mercadoria = Mercadoria.builder()
                 .nome(itemEstocadoPostRequestBody.getNome())
                 .descricao(itemEstocadoPostRequestBody.getDescricao())

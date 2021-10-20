@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data @Builder
 public class ItemEstocadoList {
+    private Long id;
     private String codigo;
     private String nome;
     private Integer quantidade;

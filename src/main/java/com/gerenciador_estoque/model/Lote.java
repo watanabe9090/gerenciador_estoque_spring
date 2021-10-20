@@ -20,8 +20,8 @@ import java.time.LocalDate;
 public class Lote {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull @JsonFormat(pattern = "dd-MM-yyyy")
+    @NotNull
     private LocalDate dataFabricacao;
-    @NotNull @JsonFormat(pattern = "dd-MM-yyyy")
+    @NotNull
     private LocalDate dataVencimento;
 }

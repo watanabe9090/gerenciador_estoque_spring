@@ -1,6 +1,7 @@
 package com.gerenciador_estoque.dto.venda;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.gerenciador_estoque.model.Cliente;
 import com.gerenciador_estoque.model.ItemVendido;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.List;
 public class VendaDetail {
     private Long vendaId;
     private Double valor;
+    private Cliente cliente;
     private LocalDateTime dataCadastro;
     private List<ItemVendido> itensVendidos;
 }

@@ -10,4 +10,5 @@ import java.util.List;
 public class VendaPostRequestBody {
     private List<ItemVendidoPostRequestBody> itensVendidos;
     private Double valor;
+    private Long clienteId;
 }

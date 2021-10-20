@@ -17,6 +17,9 @@ public class Venda {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double valor;
+    @ManyToOne
+    private Cliente cliente;
+
 //    @OneToMany(cascade = CascadeType.ALL)
 //    private List<ItemVendido> itensVendidos;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")

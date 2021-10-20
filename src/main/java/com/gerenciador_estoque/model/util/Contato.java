@@ -19,10 +19,10 @@ import javax.validation.constraints.Pattern;
 public class Contato {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty @Email
+    @Email
     private String email;
-    @NotNull @Pattern(regexp = "[\\d]+")
+    @Pattern(regexp = "[\\d]+")
     private String telefoneCelular;
-    @NotNull @Pattern(regexp = "[\\d]+")
+    @Pattern(regexp = "[\\d]+")
     private String telefoneFixo;
 }
