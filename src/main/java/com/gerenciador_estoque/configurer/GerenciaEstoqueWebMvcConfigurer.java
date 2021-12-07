@@ -15,7 +15,7 @@ public class GerenciaEstoqueWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         PageableHandlerMethodArgumentResolver pageHandler = new PageableHandlerMethodArgumentResolver();
-        pageHandler.setFallbackPageable(PageRequest.of(0, 15));
+        pageHandler.setFallbackPageable(PageRequest.of(0, 150));
         resolvers.add(pageHandler);
     }
 

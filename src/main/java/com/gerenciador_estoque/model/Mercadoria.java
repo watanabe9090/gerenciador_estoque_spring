@@ -23,9 +23,7 @@ public class Mercadoria {
     @JoinColumn(name = "marca_id")
     private Marca marca;
     private String unidade;
-    @NotEmpty
     private String descricao;
-    @NotEmpty
     private String descricaoReduzida;
     @Value("1")
     private int statusCode;

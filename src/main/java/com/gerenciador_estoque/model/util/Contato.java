@@ -19,10 +19,7 @@ import javax.validation.constraints.Pattern;
 public class Contato {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Email
     private String email;
-    @Pattern(regexp = "[\\d]+")
     private String telefoneCelular;
-    @Pattern(regexp = "[\\d]+")
     private String telefoneFixo;
 }
